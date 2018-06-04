@@ -166,7 +166,7 @@
                 if(fobj.contentWindow.document.body.innerHTML!="")
                 {   var textnode = fobj.contentWindow.document.body.firstChild.childNodes.item(0);
                     arr = textnode.nodeValue.toLowerCase().split("\n");
-                    alert(arr[0]);
+                    alert(arr.length);
                 }
             }catch(er)
             {   alert("没有代码可获取"); }
