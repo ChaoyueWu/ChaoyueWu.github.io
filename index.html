@@ -34,7 +34,10 @@
             text-align: center;
         }
         .top5-div{
-            margin-top: 40px;
+            margin-top: 20px;
+        }
+        #result-div{
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -45,7 +48,7 @@
                 <form class="form-inline" role="form" name="myform" style="display: inline">
                     <div class="form-group">
                     <input type="text" class="form-control" id="indexNum"
-                           placeholder="请输入所要查询的人脸图像编号" style="width: 250px">
+                           placeholder="请输入所要查询的人脸图像编号(0~1999)" style="width: 300px">
                     </div>
                 </form>
                 <button type="submit" class="btn btn-default" onclick="query()">查询</button>
@@ -151,50 +154,55 @@
             </div>
         </div>
     </main>
-    <iframe id="readfile" style="display:none;"></iframe>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="js/bootstrap.min.js"></script>
-    <script>
-        var fobj    = document.getElementById( "readfile" );
-        fobj.src = "result.txt";
-        var arr;
-
-        function getCodes()
-        {
-            try
-            {
-                if(fobj.contentWindow.document.body.innerHTML!="")
-                {   var textnode = fobj.contentWindow.document.body.firstChild.childNodes.item(0);
-                    arr = textnode.nodeValue.toLowerCase().split("\n");
-                    alert(arr.length);
-                }
-            }catch(er)
-            {   alert("没有代码可获取"); }
-        }
-
-        if( typeof(fobj.onreadystatechange)=="object" ) //IE
-            fobj.onreadystatechange = function ()
-            {   if(fobj.readyState=="complete")
-                getCodes();
-            };
-        else                                            //FireFox
-            fobj.onload = function ()
-            {   getCodes();
-            };
-    </script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
 
     <script type="text/javascript">
-        window.onload=function (){
-            document.getElementById('result-div').style.display='none';
-        }
+        document.getElementById('result-div').style.display='none';
     </script>
+
 <script type="text/javascript">
     function query() {
-        var indexNum = myform.indexNum.value;
-        alert(arr.length);
-        alert(arr[indexNum]);
+        var indexNum = document.getElementById('indexNum').value;
+
         document.getElementById('pic-ini').src="HW_1_Face/"+indexNum+"_1.jpg";
         document.getElementById('num-ini').innerHTML=indexNum+"_1.jpg";
+
+        $.getJSON ("1.json", function (data)
+        {
+            //alert(data.pair[indexNum].list[0].id);
+            var best = data.pair[indexNum].list[0].id;
+            document.getElementById('pic-1').src="HW_1_Face/"+best+"_2.jpg";
+            document.getElementById('num-1').innerHTML=best+"_2.jpg";
+            document.getElementById('simi-1').innerHTML=data.pair[indexNum].list[0].distance;
+
+            var t1 = data.pair[indexNum].list[1].id;
+            document.getElementById('pic-top1').src="HW_1_Face/"+t1+"_2.jpg";
+            document.getElementById('num-top1').innerHTML=t1+"_2.jpg";
+            document.getElementById('simi-top1').innerHTML=data.pair[indexNum].list[1].distance;
+
+            var t2 = data.pair[indexNum].list[2].id;
+            document.getElementById('pic-top2').src="HW_1_Face/"+t2+"_2.jpg";
+            document.getElementById('num-top2').innerHTML=t2+"_2.jpg";
+            document.getElementById('simi-top2').innerHTML=data.pair[indexNum].list[2].distance;
+
+            var t3 = data.pair[indexNum].list[3].id;
+            document.getElementById('pic-top3').src="HW_1_Face/"+t3+"_2.jpg";
+            document.getElementById('num-top3').innerHTML=t3+"_2.jpg";
+            document.getElementById('simi-top3').innerHTML=data.pair[indexNum].list[3].distance;
+
+            var t4 = data.pair[indexNum].list[4].id;
+            document.getElementById('pic-top4').src="HW_1_Face/"+t4+"_2.jpg";
+            document.getElementById('num-top4').innerHTML=t4+"_2.jpg";
+            document.getElementById('simi-top4').innerHTML=data.pair[indexNum].list[4].distance;
+
+            var t5 = data.pair[indexNum].list[5].id;
+            document.getElementById('pic-top5').src="HW_1_Face/"+t5+"_2.jpg";
+            document.getElementById('num-top5').innerHTML=t5+"_2.jpg";
+            document.getElementById('simi-top5').innerHTML=data.pair[indexNum].list[5].distance;
+        });
         document.getElementById('result-div').style.display='block';
     }
 </script>
