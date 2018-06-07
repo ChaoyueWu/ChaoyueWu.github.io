@@ -11,7 +11,6 @@
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-
     <![endif]-->
 
     <style>
@@ -42,166 +41,164 @@
     </style>
 </head>
 <body>
-    <main>
-        <div class="main-block">
-            <div >
-                <form class="form-inline" role="form" name="myform" style="display: inline">
-                    <div class="form-group">
+<main>
+    <div class="main-block">
+        <div >
+            <form class="form-inline" role="form" name="myform" style="display: inline">
+                <div class="form-group">
                     <input type="text" class="form-control" id="indexNum"
                            placeholder="请输入所要查询的人脸图像编号(0~1999)" style="width: 300px">
-                    </div>
-                </form>
-                <button type="submit" class="btn btn-default" onclick="query()">查询</button>
-            </div>
-
-            <div id="result-div">
-                <div>
-                    <table class="table-top" align="center">
-                        <tbody>
-                        <tr>
-                            <td class="explanation">您所选择的人脸图像为:</td>
-                            <td class="explanation">TOP1相同</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <img src="HW_1_Face/2_1.jpg" class="img-thumbnail" id="pic-ini">
-                            </td>
-                            <td>
-                                <img src="HW_1_Face/2_2.jpg" class="img-thumbnail" id="pic-1">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td id="num-ini">
-                                2_1.jpg
-                            </td>
-                            <td id="num-1">
-                                2_2.jpg
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>
-                                <label>距离：</label>
-                                <span id="simi-1">9</span>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
                 </div>
-                <div class="top5-div">
-                    <p class="explanation">TOP5相同</p><br>
-                    <table class="table-top" align="center">
-                        <tbody>
-                        <tr>
-                            <td>
-                                <img src="HW_1_Face/2_1.jpg" class="img-thumbnail" id="pic-top1">
-                            </td>
-                            <td>
-                                <img src="HW_1_Face/2_2.jpg" class="img-thumbnail" id="pic-top2">
-                            </td>
-                            <td>
-                                <img src="HW_1_Face/5_2.jpg" class="img-thumbnail" id="pic-top3">
-                            </td>
-                            <td>
-                                <img src="HW_1_Face/6_2.jpg" class="img-thumbnail" id="pic-top4">
-                            </td>
-                            <td>
-                                <img src="HW_1_Face/7_2.jpg" class="img-thumbnail" id="pic-top5">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td id="num-top1">
-                                2_2.jpg
-                            </td>
-                            <td id="num-top2">
-                                3_2.jpg
-                            </td>
-                            <td id="num-top3">
-                                5_2.jpg
-                            </td>
-                            <td id="num-top4">
-                                6_2.jpg
-                            </td>
-                            <td id="num-top5">
-                                7_2.jpg
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label>距离：</label>
-                                <span id="simi-top1">9</span>
-                            </td>
-                            <td>
-                                <label>距离：</label>
-                                <span id="simi-top2">19</span>
-                            </td>
-                            <td>
-                                <label>距离：</label>
-                                <span id="simi-top3">25</span>
-                            </td>
-                            <td>
-                                <label>距离：</label>
-                                <span id="simi-top4">547</span>
-                            </td><td>
-                            <label>距离：</label>
-                            <span id="simi-top5">598</span>
+            </form>
+            <button type="submit" class="btn btn-default" onclick="query()">查询</button>
+        </div>
+
+        <div id="result-div">
+            <div>
+                <table class="table-top" align="center">
+                    <tbody>
+                    <tr>
+                        <td class="explanation">您所选择的人脸图像为:</td>
+                        <td class="explanation">TOP1相同</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="HW_1_Face/2_1.jpg" class="img-thumbnail" id="pic-ini">
                         </td>
+                        <td>
+                            <img src="HW_1_Face/2_2.jpg" class="img-thumbnail" id="pic-1">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="num-ini">
+                            2_1.jpg
+                        </td>
+                        <td id="num-1">
+                            2_2.jpg
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <label>距离：</label>
+                            <span id="simi-1">9</span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="top5-div">
+                <p class="explanation">TOP5相同</p><br>
+                <table class="table-top" align="center">
+                    <tbody>
+                    <tr>
+                        <td>
+                            <img src="HW_1_Face/2_1.jpg" class="img-thumbnail" id="pic-top1">
+                        </td>
+                        <td>
+                            <img src="HW_1_Face/2_2.jpg" class="img-thumbnail" id="pic-top2">
+                        </td>
+                        <td>
+                            <img src="HW_1_Face/5_2.jpg" class="img-thumbnail" id="pic-top3">
+                        </td>
+                        <td>
+                            <img src="HW_1_Face/6_2.jpg" class="img-thumbnail" id="pic-top4">
+                        </td>
+                        <td>
+                            <img src="HW_1_Face/7_2.jpg" class="img-thumbnail" id="pic-top5">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="num-top1">
+                            2_2.jpg
+                        </td>
+                        <td id="num-top2">
+                            3_2.jpg
+                        </td>
+                        <td id="num-top3">
+                            5_2.jpg
+                        </td>
+                        <td id="num-top4">
+                            6_2.jpg
+                        </td>
+                        <td id="num-top5">
+                            7_2.jpg
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>距离：</label>
+                            <span id="simi-top1">9</span>
+                        </td>
+                        <td>
+                            <label>距离：</label>
+                            <span id="simi-top2">19</span>
+                        </td>
+                        <td>
+                            <label>距离：</label>
+                            <span id="simi-top3">25</span>
+                        </td>
+                        <td>
+                            <label>距离：</label>
+                            <span id="simi-top4">547</span>
+                        </td><td>
+                        <label>距离：</label>
+                        <span id="simi-top5">598</span>
+                    </td>
 
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
-    </main>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
+    </div>
+</main>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
 
-    <script type="text/javascript">
-        document.getElementById('result-div').style.display='none';
-    </script>
+<script type="text/javascript">
+    document.getElementById('result-div').style.display='none';
+</script>
 
 <script type="text/javascript">
     function query() {
         var indexNum = document.getElementById('indexNum').value;
-
         document.getElementById('pic-ini').src="HW_1_Face/"+indexNum+"_1.jpg";
         document.getElementById('num-ini').innerHTML=indexNum+"_1.jpg";
-
-        $.getJSON ("1.json", function (data)
+        $.getJSON ("distance.json", function (data)
         {
-            //alert(data.pair[indexNum].list[0].id);
-            var best = data.pair[indexNum].list[0].id;
+            var result = data[indexNum];
+            var best = result[0].id;
             document.getElementById('pic-1').src="HW_1_Face/"+best+"_2.jpg";
             document.getElementById('num-1').innerHTML=best+"_2.jpg";
-            document.getElementById('simi-1').innerHTML=data.pair[indexNum].list[0].distance;
+            document.getElementById('simi-1').innerHTML=result[0].dist;
 
-            var t1 = data.pair[indexNum].list[1].id;
+            var t1 = result[1].id;
             document.getElementById('pic-top1').src="HW_1_Face/"+t1+"_2.jpg";
             document.getElementById('num-top1').innerHTML=t1+"_2.jpg";
-            document.getElementById('simi-top1').innerHTML=data.pair[indexNum].list[1].distance;
+            document.getElementById('simi-top1').innerHTML=result[1].dist;
 
-            var t2 = data.pair[indexNum].list[2].id;
+            var t2 = result[2].id;
             document.getElementById('pic-top2').src="HW_1_Face/"+t2+"_2.jpg";
             document.getElementById('num-top2').innerHTML=t2+"_2.jpg";
-            document.getElementById('simi-top2').innerHTML=data.pair[indexNum].list[2].distance;
+            document.getElementById('simi-top2').innerHTML=result[2].dist;
 
-            var t3 = data.pair[indexNum].list[3].id;
+            var t3 = result[3].id;
             document.getElementById('pic-top3').src="HW_1_Face/"+t3+"_2.jpg";
             document.getElementById('num-top3').innerHTML=t3+"_2.jpg";
-            document.getElementById('simi-top3').innerHTML=data.pair[indexNum].list[3].distance;
+            document.getElementById('simi-top3').innerHTML=result[3].dist;
 
-            var t4 = data.pair[indexNum].list[4].id;
+            var t4 = result[4].id;
             document.getElementById('pic-top4').src="HW_1_Face/"+t4+"_2.jpg";
             document.getElementById('num-top4').innerHTML=t4+"_2.jpg";
-            document.getElementById('simi-top4').innerHTML=data.pair[indexNum].list[4].distance;
+            document.getElementById('simi-top4').innerHTML=result[4].dist;
 
-            var t5 = data.pair[indexNum].list[5].id;
+            var t5 = result[5].id;
             document.getElementById('pic-top5').src="HW_1_Face/"+t5+"_2.jpg";
             document.getElementById('num-top5').innerHTML=t5+"_2.jpg";
-            document.getElementById('simi-top5').innerHTML=data.pair[indexNum].list[5].distance;
+            document.getElementById('simi-top5').innerHTML=result[5].dist;
         });
         document.getElementById('result-div').style.display='block';
     }
