@@ -167,7 +167,7 @@
         var indexNum = document.getElementById('indexNum').value;
         document.getElementById('pic-ini').src="HW_1_Face/"+indexNum+"_1.jpg";
         document.getElementById('num-ini').innerHTML=indexNum+"_1.jpg";
-        $.getJSON ("distance.json", function (data)
+        $.getJSON ("data.txt", function (data)
         {
             var result = data[indexNum];
             var best = result[0].id;
