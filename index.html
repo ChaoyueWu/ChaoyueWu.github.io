@@ -14,20 +14,15 @@
     <![endif]-->
 
 </head>
-<body>
+<body onload="initialize()"> 
 <main>
-    <div class="main-block">
-        <div >
-            <form class="form-inline" role="form" name="myform" style="display: inline">
-                <div class="form-group">
-                    <input type="text" class="form-control" id="indexNum"
-                           placeholder="input your query" style="width: 300px">
-                </div>
-            </form>
-        </div>
-
-        </div>
-    </div>
+    <div id="bodyDiv" name="bodyDiv" style="position: relative; border-top:0px; margin-top:0; width:160px" >  
+        <!--<span style="color:red;font-size:5px;">*补全功能默认开启</span>-->  
+        <input type="text" id="inputUser" name="inputUser" value="" onfocus="inputFocus()" onkeydown="inputKeydown(event)" onblur="inputBlur()" />          
+        <div id="showUser" name="showUser">  
+            <!-- 此处添加搜索数据的结果，使用的是table标签 -->  
+        </div>              
+    </div>  
 </main>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
@@ -35,7 +30,53 @@
 <script src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="//www.jb51.net/jslib/jquery/jquery.min.js"></script>
 
+<script type="text/javascript">
+    //加载完后，将"提示"列表隐藏  
+    function initialize(){  
+        source=['0123','023',123,1234,212,214,'033333','0352342',1987,17563,20932];  
+        elemCSS={ focus:{'color':'black','background':'#ccc'}, blur:{'color':'black','background':'transparent'} };  
+          
+        inputUse=document.getElementById("inputUser");  
+        showUse=document.getElementById("showUser");               
+        var bodyDiv=document.getElementById("bodyDiv");            
+        showUse.style.display="none";   
+        inputUse.style.width=bodyDiv.style.width;    
+        showUse.style.width=bodyDiv.style.width;  
+        inputValue=inputUse.defaultValue;          
+    }  
+</script>
 
+<script type="text/javascript">
+     //在文本框上触发onfocus()事件  
+    function inputFocus(){  
+    //调用setInterval()函数每200ms刷新一次     
+    this.timer=setInterval(function(){  
+        if(inputUse.value!=''){  
+            //检查文本框的当前值与以前的值是否有变化  
+            if(inputUse.value!=inputValue){  
+                //如果文本框当前值与之前的值不同，记录当前值，已被下次调用时使用  
+                inputValue=inputUse.value;  
+                //清除上次调用显示的结果  
+                showUse.innerHTML='';  
+                if(inputValue!=''){  
+                    //定义JS的RegExp对象，查询以inputValue开头的数据  
+                    quickExpr=RegExp('^'+inputValue);  
+                    //如果数据源不为空，则调用match函数开始匹配数据  
+                    //此处如果通过ajax取数据，则适当修改数据源即可  
+                    if(source){   
+                        match(quickExpr,inputValue,source);  
+                    }      
+                }  
+            }  
+        }  
+        else{  
+            inputValue=inputUse.value;  
+            showUse.innerHTML='';  
+            showUse.style.display="none";   
+        }  
+    },200)  
+}  
+</script>>
 
 
 </body>
