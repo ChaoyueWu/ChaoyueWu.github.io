@@ -76,6 +76,69 @@
         }  
     },200)  
 }  
+
+ //该函数用来查询匹配数据  
+function match(quickExpr,value,source){  
+    var table=null;   
+    var tr=null;  
+    var td=null;  
+    //创建table标签  
+    table=document.createElement('table');  
+    table.id='selector';  
+    table.style.width='100%';  
+    //开始遍历数组  
+    //如果用ajax从后台取数据，我们也可组织成数组的形式返回  
+    for(var i in source){  
+        //再次检验数据是否为空并且用正则取数据  
+        if(value.length>0 && quickExpr.exec(source[i])!=null){  
+            //创建tr标签  
+            tr=document.createElement('tr');  
+            //创建td标签  
+            td=document.createElement('td');   
+            //在td中插入<a href="javascript:void(null);"><span>数据项</span></a>  
+            td.innerHTML = '<a href="javascript:void(null);">'+source[i]+'</a>';  
+            //appendChild()在指定元素的最后一个子节点后添加节点     
+            tr.appendChild(td);  
+            table.appendChild(tr);  
+            showUse.appendChild(table);  
+        }  
+    }  
+      
+    //检验table下面的a标签的数量，以此确定是否将“提示”列表显示  
+    if(showUse.getElementsByTagName('a').length){  
+        showUse.style.display="";  
+    }else{  
+        showUse.style.display="none";  
+    }  
+}  
+     
+   function inputKeydown(event){  
+    //兼容IE   
+    event = event || window.event;  
+    //如果按了down键           
+    if(event.keyCode==40){  
+        //如果“提示”列表已经显示,则把焦点切换到列表中的第一个数据项上  
+        if(showUse.style.display==""){  
+            showUse.getElementsByTagName('a')[0].focus();   
+        }else{   //如果“提示”列表未显示,则把焦点依旧留在文本框中  
+            inputUse.focus();  
+        }    
+    }  
+    //如果按了up键  
+    else if(event.keyCode==38){  
+        //如果“提示”列表已经显示,则把焦点切换到列表中的最后一个数据项上  
+           if(showUse.style.display==""){  
+            showUse.getElementsByTagName('a')[showUse.getElementsByTagName('a').length-1].focus();  
+        }else{     //如果“提示”列表未显示,则把焦点依旧留在文本框中  
+            inputUse.focus();  
+        }         
+    }  
+    //如果按了tab键，此时的情况与“百度首页”的处理情况一样  
+    else if(event.keyCode==9){  
+        showUse.innerHTML='';  
+        showUse.style.display="none";  
+    }       
+}     
 </script>
 
 
