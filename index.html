@@ -18,7 +18,7 @@
 <main>
     <div id="bodyDiv" name="bodyDiv" style="position: relative; border-top:0px; margin-top:0; width:160px" >  
         <!--<span style="color:red;font-size:5px;">*补全功能默认开启</span>-->  
-        <input type="text" id="inputUser" name="inputUser" value="" onfocus="inputFocus()" onkeydown="inputKeydown(event)" onblur="inputBlur()" />          
+        <input type="text" id="inputUser" name="inputUser" value="" onfocus="inputFocus()"/>          
         <div id="showUser" name="showUser">  
             <!-- 此处添加搜索数据的结果，使用的是table标签 -->  
         </div>              
@@ -32,9 +32,7 @@
 
 <script type="text/javascript">
     //加载完后，将"提示"列表隐藏  
-    function initialize(){  
-        source=['0123','023',123,1234,212,214,'033333','0352342',1987,17563,20932];  
-        elemCSS={ focus:{'color':'black','background':'#ccc'}, blur:{'color':'black','background':'transparent'} };  
+    function initialize(){   
           
         inputUse=document.getElementById("inputUser");  
         showUse=document.getElementById("showUser");               
@@ -59,13 +57,7 @@
                 //清除上次调用显示的结果  
                 showUse.innerHTML='';  
                 if(inputValue!=''){  
-                    //定义JS的RegExp对象，查询以inputValue开头的数据  
-                    quickExpr=RegExp('^'+inputValue);  
-                    //如果数据源不为空，则调用match函数开始匹配数据  
-                    //此处如果通过ajax取数据，则适当修改数据源即可  
-                    if(source){   
-                        match(quickExpr,inputValue,source);  
-                    }      
+                     showUse.innerHTML='<p>select</p>';
                 }  
             }  
         }  
@@ -76,164 +68,8 @@
         }  
     },200)  
 }  
-
- //该函数用来查询匹配数据  
-function match(quickExpr,value,source){  
-    var table=null;   
-    var tr=null;  
-    var td=null;  
-    //创建table标签  
-    table=document.createElement('table');  
-    table.id='selector';  
-    table.style.width='100%';  
-    //开始遍历数组  
-    //如果用ajax从后台取数据，我们也可组织成数组的形式返回  
-    for(var i in source){  
-        //再次检验数据是否为空并且用正则取数据  
-        if(value.length>0 && quickExpr.exec(source[i])!=null){  
-            //创建tr标签  
-            tr=document.createElement('tr');  
-            //创建td标签  
-            td=document.createElement('td');   
-            //在td中插入<a href="javascript:void(null);"><span>数据项</span></a>  
-            td.innerHTML = '<a href="javascript:void(null);">'+source[i]+'</a>';  
-            //appendChild()在指定元素的最后一个子节点后添加节点     
-            tr.appendChild(td);  
-            table.appendChild(tr);  
-            showUse.appendChild(table);  
-        }  
-    }  
-      
-    //检验table下面的a标签的数量，以此确定是否将“提示”列表显示  
-    if(showUse.getElementsByTagName('a').length){  
-        showUse.style.display="";  
-    }else{  
-        showUse.style.display="none";  
-    }  
-}  
-     
-   function inputKeydown(event){  
-    //兼容IE   
-    event = event || window.event;  
-    //如果按了down键           
-    if(event.keyCode==40){  
-        //如果“提示”列表已经显示,则把焦点切换到列表中的第一个数据项上  
-        if(showUse.style.display==""){  
-            showUse.getElementsByTagName('a')[0].focus();   
-        }else{   //如果“提示”列表未显示,则把焦点依旧留在文本框中  
-            inputUse.focus();  
-        }    
-    }  
-    //如果按了up键  
-    else if(event.keyCode==38){  
-        //如果“提示”列表已经显示,则把焦点切换到列表中的最后一个数据项上  
-           if(showUse.style.display==""){  
-            showUse.getElementsByTagName('a')[showUse.getElementsByTagName('a').length-1].focus();  
-        }else{     //如果“提示”列表未显示,则把焦点依旧留在文本框中  
-            inputUse.focus();  
-        }         
-    }  
-    //如果按了tab键，此时的情况与“百度首页”的处理情况一样  
-    else if(event.keyCode==9){  
-        showUse.innerHTML='';  
-        showUse.style.display="none";  
-    }       
-}     
+ 
 </script>
 
-<script type="text/javascript">
-     //当焦点离开文本框时，触发该事件   
-function inputBlur(){  
-    //由于焦点已经离开了文本框，则取消setInterval  
-    clearInterval(this.timer);  
-    //记住当前有焦点的选项   
-    var current=0;  
-    //当前table下面的a标签的个数  
-    var aArray=showUse.getElementsByTagName('a');  
-    var len=aArray.length-1;  
-    var select=document.getElementById("selector");  
-      
-      
-    //定义“选项”的onclick事件     
-    var aClick = function(){  
-        //由于“选项”上触发了click事件，this就是指a标签，则把a标签包含的数据赋值给文本框  
-        inputUse.value=this.childNodes[0].data;  
-        //将文本框的当前值更新到记录以前值的变量中  
-        inputValue=inputUse.value;  
-        //由于上面已经选出合适的数据项，则清空table下的内容，并关闭“提示”列表  
-        showUse.innerHTML='';  
-        showUse.style.display='none';  
-        //将焦点移回文本框  
-        inputUse.focus();  
-    };  
-      
-    //定义“选项”的onfocus事件   
-    var aFocus = function(){  
-        for(var i=len; i>=0; i--){  
-            //this是a，this.parentNode是td，select.children[i].children[0]是table.tr.td  
-            if(this.parentNode===select.childNodes[i].childNodes[0]){  
-                //如果是同一个td，则将current的值置为焦点所在位置的值  
-                current = i;  
-                break;  
-            }  
-        }  
-        //添加有焦点的效果  
-        for(var k in elemCSS.focus){   
-            this.style[k] = elemCSS.focus[k];  
-        }  
-    };  
-      
-    //定义“选项”的onblur事件  
-    var aBlur= function(){  
-        //添加无焦点的效果   
-        for(var k in elemCSS.blur)  
-            this.style[k] = elemCSS.blur[k];  
-    };  
-      
-    //定义“选项”的onKeydown是事件     
-    var aKeydown = function(event){  
-        //兼容IE   
-        event = event || window.event;  
-       
-        //如果在选择数据项时按了tab键，此时的情况与“百度首页”的处理情况一样  
-        if(event.keyCode===9){  
-            showUse.innerHTML='';  
-            showUse.style.display = 'none';  
-            inputUse.focus();  
-        }  
-        //如果按了down键  
-        else if(event.keyCode==40){   
-                  //向下移动，准备移动焦点               
-            current++;  
-            //如果当前焦点在最后一个数据项上，用户用按了down键，则循环向上，回到文本框上  
-            if(current>len){  
-                current=-1;  
-                inputUse.focus();  
-            }else{  
-                select.getElementsByTagName('a')[current].focus();  
-            }  
-        }  
-        //如果按了up键  
-        else if(event.keyCode==38){  
-            //向上移动，准备移动焦点  
-            current--;  
-            //如果当前焦点在文本框上，用户用按了up键，则循环向下，回到最后一个数据项上  
-            if(current<0){  
-                inputUse.focus();  
-            }else{  
-                select.getElementsByTagName('a')[current].focus();  
-            }  
-        }  
-    };  
-      
-    //将“选项”的事件与相应的处理函数绑定      
-    for(var i=0; i<aArray.length; i++){  
-        aArray[i].onclick = aClick;  
-        aArray[i].onfocus = aFocus;  
-        aArray[i].onblur = aBlur;  
-        aArray[i].onkeydown = aKeydown;  
-    }  
-}   
-</script>
 </body>
 </html>
