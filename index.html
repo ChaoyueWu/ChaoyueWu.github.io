@@ -36,9 +36,7 @@
           
         inputUse=document.getElementById("inputUser");  
         showUse=document.getElementById("showUser");               
-        var bodyDiv=document.getElementById("bodyDiv");    
-        inputUse.style.width=bodyDiv.style.width;    
-        showUse.style.width=bodyDiv.style.width;  
+        var bodyDiv=document.getElementById("bodyDiv");
         inputValue=inputUse.defaultValue;          
     }  
 </script>
@@ -53,17 +51,12 @@
             if(inputUse.value!=inputValue){  
                 //如果文本框当前值与之前的值不同，记录当前值，已被下次调用时使用  
                 inputValue=inputUse.value;  
-                //清除上次调用显示的结果  
-                showUse.innerHTML='';  
-                if(inputValue!=''){  
-                     showUse.innerHTML='<p>select</p>';
-                }  
+                showUse.innerHTML='<p>select</p>';  
             }  
         }  
         else{  
             inputValue=inputUse.value;  
-            showUse.innerHTML='';  
-            showUse.style.display="none";   
+            showUse.innerHTML='no suggest';    
         }  
     },200)  
 }  
